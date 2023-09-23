@@ -24,23 +24,21 @@ public:
 
 class cir_que{
 private:
-    int head, tail, size;
+    int head = 0, tail = 0, size;
     int* buffer;
 public:
     my_sem lock, empty, full;
-    cir_que(int s):
-        head(0),
-        tail(0),
+    explicit cir_que(int s):
         size(s),
         lock(1),
         empty(s),
         full(0) {
-        buffer = new int[5];
+        buffer = new int[s];
     };
     void put(int v);
     void get();
     ~cir_que() {
-        delete buffer;
+        delete[] buffer;
     }
 }; // A circular cir_que with mutex and condition variables
 
