@@ -4,7 +4,7 @@
 #include <ctime>
 #include <thread>
 #include "mySort.h"
-//#include "mySem.h"
+#include "mySem.h"
 
 using std::thread;
 using std::cout;
@@ -36,15 +36,14 @@ int main() {
     cout << (et - st)/CLOCKS_PER_SEC * 1000<<" ms\n\n";
 
     // Solve the producers-consumers problem using semaphores implemented by mutex & condition variables
-//    cir_que my_q(5);
-//    auto p1 = thread(producer, std::ref(my_q), 1, 10);
-//    auto p2 = thread(producer, std::ref(my_q), -10, -1);
-//    auto c1 = thread(consumer, std::ref(my_q), 10);
-//    auto c2 = thread(consumer, std::ref(my_q), 10);
-//    p1.join();
-//    c1.join();
-//    p2.join();
-//    c2.join();
-
+    cir_que my_q(5);
+    auto p1 = thread(producer, std::ref(my_q), 1, 10);
+    auto p2 = thread(producer, std::ref(my_q), -10, -1);
+    auto c1 = thread(consumer, std::ref(my_q), 10);
+    auto c2 = thread(consumer, std::ref(my_q), 10);
+    p1.join();
+    c1.join();
+    p2.join();
+    c2.join();
     return 0;
 }

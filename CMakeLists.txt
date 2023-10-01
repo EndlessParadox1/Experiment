@@ -8,4 +8,6 @@ add_executable(untitled main.cpp
         mySort.h
         mySem.cpp
         mySem.h
+        my_rwlock.cpp
+        my_rwlock.h
 )
