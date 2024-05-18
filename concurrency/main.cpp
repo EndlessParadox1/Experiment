@@ -1,11 +1,12 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
-#include <ctime>
 #include <thread>
+#include <chrono>
 #include "mySort.h"
 #include "mySem.h"
 
+using namespace std::chrono;
 using std::thread;
 using std::cout;
 using std::vector;
@@ -24,16 +25,20 @@ int main() {
     fs.close();
 
     // Test sort algorithms.
-    clock_t st = clock();
+    auto start = high_resolution_clock::now();
     mSort(nums1, nums1, 0, nums1.size() - 1);
-    clock_t et = clock();
-    cout << (et - st)/CLOCKS_PER_SEC * 1000<<" ms\n";
+    auto end = high_resolution_clock::now();
+    cout << duration_cast<nanoseconds>(end - start).count() <<" ns\n";
+
+    start = high_resolution_clock::now();
     qSort(nums2, 0, nums2.size() - 1);
-    et = clock();
-    cout << (et - st)/CLOCKS_PER_SEC * 1000<<" ms\n";
+    end = high_resolution_clock::now();
+    cout << duration_cast<nanoseconds>(end - start).count() <<" ns\n";
+
+    start = high_resolution_clock::now();
     hSort(nums3);
-    et = clock();
-    cout << (et - st)/CLOCKS_PER_SEC * 1000<<" ms\n\n";
+    end = high_resolution_clock::now();
+    cout << duration_cast<nanoseconds>(end - start).count() <<" ns\n";
 
     // Solve the producers-consumers problem using semaphores implemented by mutex & condition variables.
     cir_que my_q(5);
