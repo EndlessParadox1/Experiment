@@ -1,0 +1,3 @@
+concurrency/cmake-build-debug
+concurrency/CMakeLists.txt
+.idea

@@ -1,41 +1,63 @@
 #include "mySort.h"
 
-int part(vector<int> &nums, int low, int high) {
-    int temp = nums[low], key = nums[low];
-    while(low < high) {
-        while(low < high && nums[high] >= key) {
-            high--;
-            nums[low] = nums[high];
-        }
-        while(low < high && nums[low] <= key) {
-            low++;
-            nums[high] = nums[low];
-        }
-    }
-    nums[low] = temp;
-    return low;
+using std::swap;
+
+int mid3(vector<int>& nums, int left, int right) {
+    int mid = (left + right) >> 1;
+    if (nums[left] > nums[mid])
+        swap(nums[left], nums[mid]);
+    if (nums[left] > nums[right])
+        swap(nums[left], nums[right]);
+    if (nums[mid] > nums[right])
+        swap(nums[mid], nums[right]);
+    swap(nums[mid], nums[right-1]);
+    return nums[right-1];
 }
 
-void qSort(vector<int> &nums, int low, int high) {
-    if (low < high) {
-        int loc = part(nums, low, high);
-        qSort(nums, low, loc);
-        qSort(nums, loc + 1, high);
+void qSort(vector<int>& nums, int left, int right) {
+    if (left + 3 <= right) {
+        int pivot = mid3(nums, left, right);
+        int i = left, j = right - 1;
+        while (1) {
+            while (nums[++i] < pivot);
+            while (nums[--j] > pivot);
+            if (i < j)
+                swap(nums[i], nums[j]);
+            else
+                break;
+        }
+        swap(nums[i], nums[right - 1]);
+        qSort(nums, left, i - 1);
+        qSort(nums, i + 1, right);
+    } else {
+        hSort(nums);
     }
 }
 
-void qSort_th(vector<int> &nums, int low, int high, int level) {
-    if (low < high) {
-        int loc = part(nums, low, high);
+void qSort_th(vector<int> &nums, int left, int right, int level) {
+    if (left + 3 <= right) {
+        int pivot = mid3(nums, left, right);
+        int i = left, j = right - 1;
+        while (1) {
+            while (nums[++i] < pivot);
+            while (nums[--j] > pivot);
+            if (i < j)
+                swap(nums[i], nums[j]);
+            else
+                break;
+        }
+        swap(nums[i], nums[right - 1]);
         if(level) {
-            auto p1 = thread(qSort_th, std::ref(nums), low, loc, level - 1);
-            auto p2 = thread(qSort_th, std::ref(nums), loc + 1, high, level - 1);
+            auto p1 = thread(qSort_th, std::ref(nums), left, i - 1, level - 1);
+            auto p2 = thread(qSort_th, std::ref(nums), i + 1, right, level - 1);
             p1.join();
             p2.join();
         } else {
-            qSort(nums, low, loc);
-            qSort(nums, loc + 1, high);
+            qSort(nums, left, i - 1);
+            qSort(nums, i + 1, right);
         }
+    } else {
+        hSort(nums);
     }
 }
 
