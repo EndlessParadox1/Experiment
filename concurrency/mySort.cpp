@@ -86,24 +86,6 @@ void mSort(vector<int> sr, vector<int> &tr, int s, int t) {
     }
 }
 
-void mSort_th(vector<int> sr, vector<int> &tr, int s, int t, int level) {
-    if(s == t)
-        tr[s] = sr[s];
-    else {
-        int m = (s + t)/2;
-        if(level) {
-            auto p1 = thread(mSort_th, sr, std::ref(tr), s, m, level - 1);
-            auto p2 = thread(mSort_th, sr, std::ref(tr), m + 1, t, level - 1);
-            p1.join();
-            p2.join();
-        } else {
-            mSort(sr, tr, s, m);
-            mSort(sr, tr, m+1, t);
-        }
-        merge(tr, tr, s, m, t);
-    }
-}
-
 void heap(vector<int> &nums, int s, int m) {
     int temp = nums[s];
     for(int j = s * 2 + 1; j <= m; j = j * 2 + 1) {

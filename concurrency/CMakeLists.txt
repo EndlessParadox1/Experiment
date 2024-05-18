@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.26)
-project(untitled)
+project(concurrency)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(untitled main.cpp
+add_executable(concurrency main.cpp
         mySort.cpp
         mySort.h
         mySem.cpp
