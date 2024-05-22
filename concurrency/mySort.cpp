@@ -57,11 +57,11 @@ void qSort_th(vector<int> &nums, int left, int right, int level) {
             qSort(nums, i + 1, right);
         }
     } else {
-        insertSort(nums);
+        iSort(nums);
     }
 }
 
-void insertSort(vector<int> &nums) {
+void iSort(vector<int> &nums) {
     int j, tmp;
     for (int i = 1; i < nums.size(); i++) {
         tmp = nums[i];

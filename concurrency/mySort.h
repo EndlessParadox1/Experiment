@@ -8,6 +8,7 @@ using std::vector;
 using std::thread;
 
 int part(vector<int>& nums, int low, int high);
+void iSort(vector<int>& nums);
 void qSort(vector<int>& nums, int low, int high);
 void qSort_th(vector<int>& nums, int low, int high, int level);
 
