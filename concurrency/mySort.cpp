@@ -47,7 +47,7 @@ void qSort_th(vector<int> &nums, int left, int right, int level) {
                 break;
         }
         swap(nums[i], nums[right - 1]);
-        if(level) {
+        if (level) {
             auto p1 = thread(qSort_th, std::ref(nums), left, i - 1, level - 1);
             auto p2 = thread(qSort_th, std::ref(nums), i + 1, right, level - 1);
             p1.join();
@@ -57,10 +57,20 @@ void qSort_th(vector<int> &nums, int left, int right, int level) {
             qSort(nums, i + 1, right);
         }
     } else {
-        hSort(nums);
+        insertSort(nums);
     }
 }
-;;;;
+
+void insertSort(vector<int> &nums) {
+    int j, tmp;
+    for (int i = 1; i < nums.size(); i++) {
+        tmp = nums[i];
+        for (j = i; j > 0 && nums[j-1] > tmp; j--)
+            nums[j] = nums[j-1];
+        nums[j] = tmp
+    }
+}
+
 void merge(vector<int> sr, vector<int> &tr, int i, int m, int n) {
     int j, k;
     for(j = m+1, k = i; i <= m && j <= n; k++) {
