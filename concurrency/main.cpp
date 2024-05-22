@@ -15,12 +15,14 @@ using std::ios;
 
 int main() {
     fstream fs("data.txt", ios::in);
-    vector<int> nums1, nums2, nums3;
+    vector<int> nums1, nums2, nums3, nums4, nums5;
     int tmp ;
     while(fs >> tmp) {
         nums1.push_back(tmp);
         nums2.push_back(tmp);
         nums3.push_back(tmp);
+        nums4.push_back(tmp);
+        nums5.push_back(tmp);
     }
     fs.close();
 
@@ -36,17 +38,17 @@ int main() {
     cout << duration_cast<nanoseconds>(end - start).count() <<" ns\n";
 
     start = high_resolution_clock::now();
-    qSort_th(nums2, 0, nums2.size() - 1, 2);
+    qSort_th(nums3, 0, nums3.size() - 1, 2);
     end = high_resolution_clock::now();
     cout << duration_cast<nanoseconds>(end - start).count() <<" ns\n";
 
     start = high_resolution_clock::now();
-    qSort_th(nums2, 0, nums2.size() - 1, 3);
+    qSort_th(nums4, 0, nums4.size() - 1, 3);
     end = high_resolution_clock::now();
     cout << duration_cast<nanoseconds>(end - start).count() <<" ns\n";
 
     start = high_resolution_clock::now();
-    hSort(nums3);
+    hSort(nums5);
     end = high_resolution_clock::now();
     cout << duration_cast<nanoseconds>(end - start).count() <<" ns\n";
 
