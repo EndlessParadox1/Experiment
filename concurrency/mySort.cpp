@@ -67,7 +67,7 @@ void insertSort(vector<int> &nums) {
         tmp = nums[i];
         for (j = i; j > 0 && nums[j-1] > tmp; j--)
             nums[j] = nums[j-1];
-        nums[j] = tmp
+        nums[j] = tmp;
     }
 }
 
