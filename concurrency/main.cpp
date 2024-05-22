@@ -36,6 +36,16 @@ int main() {
     cout << duration_cast<nanoseconds>(end - start).count() <<" ns\n";
 
     start = high_resolution_clock::now();
+    qSort_th(nums2, 0, nums2.size() - 1, 2);
+    end = high_resolution_clock::now();
+    cout << duration_cast<nanoseconds>(end - start).count() <<" ns\n";
+
+    start = high_resolution_clock::now();
+    qSort_th(nums2, 0, nums2.size() - 1, 3);
+    end = high_resolution_clock::now();
+    cout << duration_cast<nanoseconds>(end - start).count() <<" ns\n";
+
+    start = high_resolution_clock::now();
     hSort(nums3);
     end = high_resolution_clock::now();
     cout << duration_cast<nanoseconds>(end - start).count() <<" ns\n";

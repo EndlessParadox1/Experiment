@@ -60,7 +60,7 @@ void qSort_th(vector<int> &nums, int left, int right, int level) {
         hSort(nums);
     }
 }
-
+;;;;
 void merge(vector<int> sr, vector<int> &tr, int i, int m, int n) {
     int j, k;
     for(j = m+1, k = i; i <= m && j <= n; k++) {
