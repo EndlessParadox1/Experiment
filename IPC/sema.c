@@ -49,14 +49,13 @@ int main(){
 	if (pid < 0) {
 		perror("fork error");
 		exit(1);
-	} else if (pid == 0){
+	} else if (pid == 0) {
 		char buf[10] = "child\n";
 		int i;
 		
 		semop_p(semid);
 		for (i = 0; i < 50; i++) {
 			write(fd, buf, strlen(buf)+1);
-			// sleep(1);
 		}
 		semop_v(semid);
 		
@@ -68,7 +67,6 @@ int main(){
 		semop_p(semid);
 		for (i = 0; i < 50; i++) {
 			write(fd, buf, strlen(buf)+1);
-			// sleep(1);
 		}
 		semop_v(semid);
 
