@@ -9,7 +9,7 @@ int main() {
 
     // Create the pipe
     if (pipe(pipefd) == -1) {
-        // 半双工, 0 only for read, and 1 only for write
+        // Half-duplex, 0 only for read, and 1 only for write
         perror("pipe");
         return 1;
     }

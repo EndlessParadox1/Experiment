@@ -8,8 +8,8 @@
 
 
 void signal_handler(int sig) {
-    if(sig == SIGTERM) 
-        exit(0); // avoid SIGINT
+    if (sig == SIGTERM)
+        exit(0); // Ignore SIGINT
 }
 
 int main() {

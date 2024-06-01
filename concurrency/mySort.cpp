@@ -72,21 +72,21 @@ void iSort(vector<int> &nums) {
 }
 
 void merge(vector<int> sr, vector<int> &tr, int i, int m, int n) {
-    int j, k;
-    for(j = m+1, k = i; i <= m && j <= n; k++) {
+    int j = m + 1, k = i;
+    while (i <= m && j <= n) {
         if(sr[i] < sr[j])
-            tr[k] = sr[i++];
+            tr[k++] = sr[i++];
         else
-            tr[k] = sr[j++];
+            tr[k++] = sr[j++];
     }
-    while(i <= m)
+    while (i <= m)
         tr[k++] = sr[i++];
-    while(j <= n)
+    while (j <= n)
         tr[k++] = sr[j++];
 }
 
 void mSort(vector<int> sr, vector<int> &tr, int s, int t) {
-    if(s == t)
+    if (s == t)
         tr[s] = sr[s];
     else {
         int m = (s + t)/2;
@@ -98,10 +98,10 @@ void mSort(vector<int> sr, vector<int> &tr, int s, int t) {
 
 void heap(vector<int> &nums, int s, int m) {
     int temp = nums[s];
-    for(int j = s * 2 + 1; j <= m; j = j * 2 + 1) {
-        if(j < m && nums[j] < nums[j + 1])
+    for (int j = s * 2 + 1; j <= m; j = j * 2 + 1) {
+        if (j < m && nums[j] < nums[j + 1])
             j++;
-        if(temp >= nums[j])
+        if (temp >= nums[j])
             break;
         nums[s] = nums[j];
         s = j;
@@ -110,9 +110,9 @@ void heap(vector<int> &nums, int s, int m) {
 }
 
 void hSort(vector<int> &nums) {
-    for(int i = nums.size()/2 - 1; i >= 0; i--)
+    for (int i = nums.size()/2 - 1; i >= 0; i--)
         heap(nums, i, nums.size() - 1);
-    for(int i = nums.size() - 1; i > 0; i--) {
+    for (int i = nums.size() - 1; i > 0; i--) {
         int temp = nums[0];
         nums[0] = nums[i];
         nums[i] = temp;
